@@ -40,4 +40,4 @@ order <- t[order(t$Freq),]
 df2 <- data.frame(order$data, order$Freq)
 write.csv(df2, "blast.csv", quote=FALSE)</pre>
 
-### Run count_unmapped.rb to get a final csv file with counts for the unmapped genes in several samples
+### Run  <a href=https://github.com/kaizohio/RNA-seq/blob/master/count_unmapped.rb > count_unmapped.rb <a/>to get a final csv file with counts for the unmapped genes in several samples
