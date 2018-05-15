@@ -16,7 +16,8 @@ bedtools bamtofastq -i $LIBRARY/BAM_files2/unmapped_sorted.bam -fq $LIBRARY/$LIB
 <pre> awk 'NR % 4 == 1 {print ">" $0 } NR % 4 == 2 {print $0}' unmapped.fq > unmapped.fa </pre>
 
 ### Run blastn get the best hit
-
+ #### download ftp://ftp.ncbi.nlm.nih.gov/blast/db/taxdb.tar.gz
+ #### export BLASTDB= /Users/kaiz/Downloads/taxdb
 <pre> blastn -perc_identity 100 -db nr -query unmapped.fa -outfmt '6 qseqid sseqid evalue bitscore sgi sacc staxids sscinames scomnames stitle' -remote -out blast_besthit.	out -max_target_seqs 1 </pre>
 
 ### Get only species names in output
