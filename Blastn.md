@@ -25,13 +25,13 @@ bedtools bamtofastq -i $LIBRARY/BAM_files2/unmapped_sorted.bam -fq $LIBRARY/$LIB
 awk '{print $10, $11}' blast_unmapped.out > 	blast_unmapped_only_names.out
 sed 's/ /_/g' blast_unmapped_only_names.out > 	blast_unmapped_only_names_.txt </pre>
 
-###Plot bar chart in R using blast_output_barchart.R
+### Plot bar chart in R using <a href=https://github.com/kaizohio/RNA-seq/blob/master/blast_output_barchart.R > blast_output_barchart.R <a/>
 
-###Get gene description for a particular subgroup (Theileria genre)
+### Get gene description for a particular subgroup (Theileria genre)
 
 <pre> grep "Theileria" blast_besthit.out | awk '{print $10, $11, $12, $13, $14, $15, $16}' - > Theileria_unmapped.out </pre>
 
-###Get file with counts using R
+### Get file with counts using R
 
 <pre>data <- read.table("Theileria_unmapped.out")
 counts <- table(data)
