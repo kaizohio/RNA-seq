@@ -1,0 +1,22 @@
+setwd("Desktop/HTseq/test/")
+directory <- "~/Desktop/HTseq/test/"
+file<-paste(directory,"merge2_htseq_tab.txt",sep="")
+cond<-c("control","control","control","mutant","mutant","mutant")
+type<-c("control","control","control","mutant","mutant","mutant")
+countsTable<-read.table(file,header = T)
+rownames(countsTable)<-countsTable$genes
+countsTable<-countsTable[,-1]
+countsTable = countsTable[rowSums(countsTable)>1,]
+rlog = rlogTransformation
+countsTable
+localTable<-countsTable
+localCond<-cond
+colData<-data.frame(condition=factor(localCond), type=factor(type))
+dds<-DESeqDataSetFromMatrix(countData=localTable,colData,formula(~condition))
+dds <- DESeq(dds)
+rld <- rlog(dds)
+plotMA(dds)
+res = results(dds, contrast = c("condition", "mutant", "control"))
+res = res[order(res$pvalue),]
+summary(res)
+write.csv(as.data.frame(res),file=paste("result",".csv",sep=""))
