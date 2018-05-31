@@ -1,1 +1,2 @@
+sed -i a.bak 's/T0/ /g' Magnaporthe_oryzae.MG8.cds.all.fa
 cut -c 1- list2.txt | xargs -n 1 samtools faidx Sequences.fasta > cut.fasta
