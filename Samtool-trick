@@ -1,0 +1,1 @@
+cut -c 1- list2.txt | xargs -n 1 samtools faidx Sequences.fasta > cut.fasta
