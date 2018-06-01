@@ -1,0 +1,47 @@
+library(lima)
+library(DESeq2)
+
+setwd("Desktop/HTseq/test/")
+directory<- "~/Desktop/HTseq/test/"
+file<-paste(directory,"merge2_htseq_tab.txt",sep="")
+countsTable<-read.table(file,header = T)
+rownames(countsTable)<-countsTable$genes
+countsTable<-countsTable[,-1]
+countsTable=countsTable[rowSums(countsTable)>1,]
+rlog = rlogTransformation
+countsTable
+localTable<-countsTable
+localCond<-cond
+cond<-c("control","control","ko1","ko1","ko2","ko2")
+type<-c("control","control","ko1","ko1","ko2","ko2")
+localCond<-cond
+colData<-data.frame(condition=factor(localCond), type=factor(type))
+dds<-DESeqDataSetFromMatrix(countData=localTable,colData,formula(~condition))
+dds <- DESeq(dds
+rld <- rlog(dds)
+
+res_ko1=results(dds,contrast=c("condition","ko1","control"))
+##Same as(res_ko1<-results(dds,test = "Wald",name = "condition_ko1_vs_control"))##
+res_ko2=results(dds,contrast = c("condition","ko2","control"))
+
+res_ko1.up<-subset(res_ko1,res_ko1$log2FoldChange>0&res_ko1$padj<0.05)
+res_ko1.down<-subset(res_ko1,res_ko1$log2FoldChange<0&res_ko1$padj<0.05)
+res_ko2.up<-subset(res_ko2,res_ko2$log2FoldChange>0&res_ko2$padj<0.05)
+res_ko2.down<-subset(res_ko2,res_ko2$log2FoldChange<0&res_ko2$padj<0.05)
+
+res_ko1.up.gene<-row.names(res_ko1.up)
+res_ko1.down.gene<-row.names(res_ko1.down)
+res_ko2.down.gene<-row.names(res_ko2.down)
+res_ko2.up.gene<-row.names(res_ko2.up)
+
+comb<-c(res_ko1.up.gene,res_ko1.down.gene,res_ko2.up.gene,res_ko2.down.gene)
+comb
+
+res_ko1.up.gene.2<-comb%in%res_ko1.up.gene
+res_ko1.down.gene.2<-comb%in%res_ko1.down.gene
+res_ko2.up.gene.2<-comb%in%res_ko2.up.gene
+res_ko2.down.gene.2<-comb%in%res_ko2.down.gene
+
+count.4<-cbind(res_ko1.up.gene.2,res_ko1.down.gene.2,res_ko2.up.gene.2,res_ko2.down.gene.2)
+results.4<-vennCounts(count.4)
+vennDiagram(results.4,cex = 1,names = c("Ko1-up","Ko1-down","Ko2-up","Ko2-down"), circle.col = c("red", "blue","green","yellow"))
