@@ -1,0 +1,6 @@
+library(biomartr)
+gerMarts()
+getDatasets(mart = "fungi_mart")
+getAttributes(mart = "fungi_mart",dataset = "moryzae_eg_gene")
+organismAttributes("Magnaporthe oryzae",topic="I love you")
+getGO("Magnaporthe oryzae",genes = "MGG_05738",filters = "broad_magnaporthe_db")
