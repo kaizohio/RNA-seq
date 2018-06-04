@@ -3,4 +3,13 @@ gerMarts()
 getDatasets(mart = "fungi_mart")
 getAttributes(mart = "fungi_mart",dataset = "moryzae_eg_gene")
 organismAttributes("Magnaporthe oryzae",topic="I love you")
+
+
+################GO_ID##############
+
 getGO("Magnaporthe oryzae",genes = "MGG_05738",filters = "broad_magnaporthe_db")
+
+
+################KEGG##############
+
+like3<-biomart(genes=c(rownames(like2)),mart= "fungi_mart", dataset = "moryzae_eg_gene",attributes = c("kegg_enzyme"),filters  = "broad_magnaporthe_db")
