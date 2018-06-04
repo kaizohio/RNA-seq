@@ -1,0 +1,5 @@
+library("GO.db")
+table2<-read.table("GO_ID.txt",sep = "",header = T)
+rownames(table2)<-table2$GO_ID
+g1<-GOGraph(c(rownames(table2)),GOMFPARENTS)
+plot(g1)
