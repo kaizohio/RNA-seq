@@ -26,6 +26,10 @@ rownames(countsTable)<-countsTable$genes
 countsTable<-countsTable[,-1] 
 rlog = rlogTransformation
 
+#####################################################
+countsTable = countsTable[rowSums(countsTable)>1,]
+#####################################################
+
 #############
 #COMPARE ALL#
 #############
