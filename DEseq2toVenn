@@ -60,7 +60,7 @@ kai<-kai[,-1]
 KO1VSCONTROL<-kai$res_ko1.up.gene.2-kai$res_ko1.down.gene.2
 KO2VSCONTROL<-kai$res_ko2.up.gene.2-kai$res_ko2.down.gene.2
 count.3<-cbind(KO1VSCONTROL,KO2VSCONTROL)
-vennDiagram(results.3,include = c("up","down")
+vennDiagram(results.3,include = c("up","down"))
 
 ####################################################################################################
 
