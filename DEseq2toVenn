@@ -23,28 +23,36 @@ rld <- rlog(dds)
 res_ko1=results(dds,contrast=c("condition","ko1","control"))
 ##Same as(res_ko1<-results(dds,test = "Wald",name = "condition_ko1_vs_control"))##
 res_ko2=results(dds,contrast = c("condition","ko2","control"))
+res_kk=results(dds,contrast = c("condition","ko2","ko1"))
 
 res_ko1.up<-subset(res_ko1,res_ko1$log2FoldChange>0&res_ko1$padj<0.05)
 res_ko1.down<-subset(res_ko1,res_ko1$log2FoldChange<0&res_ko1$padj<0.05)
 res_ko2.up<-subset(res_ko2,res_ko2$log2FoldChange>0&res_ko2$padj<0.05)
 res_ko2.down<-subset(res_ko2,res_ko2$log2FoldChange<0&res_ko2$padj<0.05)
+res_kk.up<-subset(res_kk,res_kk$log2FoldChange>0&res_kk$padj<0.05)
+res_kk.down<-subset(res_kk,res_kk$log2FoldChange<0&res_kk$padj<0.05)
 
 res_ko1.up.gene<-row.names(res_ko1.up)
 res_ko1.down.gene<-row.names(res_ko1.down)
 res_ko2.down.gene<-row.names(res_ko2.down)
 res_ko2.up.gene<-row.names(res_ko2.up)
+res_kk.up.gene<-row.names(res_kk.up)
+res_kk.down.gene<-row.names(res_kk.down)
 
-comb<-c(res_ko1.up.gene,res_ko1.down.gene,res_ko2.up.gene,res_ko2.down.gene)
+comb<-c(res_ko1.up.gene,res_ko1.down.gene,res_ko2.up.gene,res_ko2.down.gene,res_kk.up.gene,res_kk.down.gene)
 comb
 
 res_ko1.up.gene.2<-comb%in%res_ko1.up.gene
 res_ko1.down.gene.2<-comb%in%res_ko1.down.gene
 res_ko2.up.gene.2<-comb%in%res_ko2.up.gene
 res_ko2.down.gene.2<-comb%in%res_ko2.down.gene
+res_kk.up.gene.2<-comb%in%res_kk.up.gene
+res_kk.down.gene.2<-comb%in%res_kk.down.gene
+
 
 count.1<-cbind(res_ko1.up.gene.2,res_ko2.up.gene.2)
 count.2<-cbind(res_ko1.down.gene.2,res_ko2.down.gene.2)
-count.4<-cbind(res_ko1.up.gene.2,res_ko1.down.gene.2,res_ko2.up.gene.2,res_ko2.down.gene.2)
+count.4<-cbind(res_ko1.up.gene.2,res_ko1.down.gene.2,res_ko2.up.gene.2,res_ko2.down.gene.2,res_kk.up.gene.2,res_kk.down.gene.2)
 results.1<-vennCounts(count.1)
 results.2<-vennCounts(count.2)
 vennDiagram(results.1,cex = 1,names = c("Ko1-up","Ko2-up"), circle.col = c("red", "blue"))
@@ -52,15 +60,19 @@ vennDiagram(results.2,cex = 1,names = c("Ko1-down","Ko2-down"), circle.col = c("
 
 #####################################################################################################
 
-write.csv(as.data.frame(count.4),file=paste("degene",".csv",sep = "")
+write.csv(as.data.frame(count.4),file=paste("degene",".csv",sep = ""))
 
 open excel convert TRUE as 1, FALSE as 0, save the file
 kai<-read.csv("degene.csv",sep =",",header = T)
 kai<-kai[,-1]
+
 KO1VSCONTROL<-kai$res_ko1.up.gene.2-kai$res_ko1.down.gene.2
 KO2VSCONTROL<-kai$res_ko2.up.gene.2-kai$res_ko2.down.gene.2
-count.3<-cbind(KO1VSCONTROL,KO2VSCONTROL)
-vennDiagram(results.3,include = c("up","down"))
+KO2VSKO1<-kai$res_kk.up.gene.2-kai$res_kk.down.gene.2
+
+count.3<-cbind(KO1VSCONTROL,KO2VSCONTROL,KO2VSKO1)
+vennDiagram(count.3,include = c("up","down"),names=NULL, mar=rep(1,4), cex=c(1.5,1,0.7), lwd=1,
+circle.col=NULL, counts.col=NULL, show.include=NULL,))
 
 ####################################################################################################
 
