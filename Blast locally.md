@@ -6,3 +6,8 @@
 #### Unzip downloaded database
 <pre> tar zxvf htgs.00.tar.gz</pre>
 <pre>blastn -perc_identity 100 -db taxdb/htgs -query unmmap1.fa -outfmt '6 qseqid sseqid evalue bitscore sgi sacc staxids sscinames scomnames stitle'  -out blast_besthit.out -max_target_seqs 1<pre>
+
+
+###########################################################################################################################
+tblastn -query cut.fasta -subject  Ensembl_database/Fusarium_graminearum.RR1.cdna.all.fa -outfmt '6 qseqid sseqid evalue bitscore sgi sacc staxids sscinames scomnames stitle' -out blast_besthit.out -max_target_seqs 1
+###########################################################################################################################
