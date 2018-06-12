@@ -17,3 +17,19 @@ like3<-biomart(genes=c(rownames(like2)),mart= "fungi_mart", dataset = "moryzae_e
 ################KEGG##############
 
 like3<-biomart(genes=c(rownames(like2)),mart= "fungi_mart", dataset = "moryzae_eg_gene",attributes = c("kegg_enzyme"),filters  = "broad_magnaporthe_db")
+
+
+
+
+#########################################################################################################################################################
+
+Fusarium graminearum str. PH-1 (RR1) 
+
+#########################################################################################################################################################
+
+
+kai1<-biomart(genes = c(rownames(up)),mart = "fungi_mart",dataset = "fgraminearum_eg_gene",attributes = c("go_id"),filters  = "ensembl_peptide_id")
+
+kai1<-biomart(genes = c(rownames(up)),mart = "fungi_mart",dataset = "fgraminearum_eg_gene",attributes = c("kegg_enzyme"),filters  = "ensembl_peptide_id")
+
+#########################################################################################################################################################
