@@ -33,3 +33,14 @@ kai1<-biomart(genes = c(rownames(up)),mart = "fungi_mart",dataset = "fgraminearu
 kai1<-biomart(genes = c(rownames(up)),mart = "fungi_mart",dataset = "fgraminearum_eg_gene",attributes = c("kegg_enzyme"),filters  = "ensembl_peptide_id")
 
 #########################################################################################################################################################
+
+
+rownames(g2v1.up)<-g2v1.up$group2vsgroup1.up.gene
+> rownames(g3v1.up)<-g2v1.up$group3vsgroup1.up.gene
+> rownames(g3v1.down)<-g3v1.down$group3vsgroup1.down.gene
+> rownames(g3v1.up)<-g3v1.up$group3vsgroup1.up.gene
+> rownames(g2v3.up)<-g2v3.up$group2vsgroup3.up.gene
+> rownames(g2v3.down)<-g2v3.down$group2vsgroup3.down.gene
+> g2v1.down.gene.2<-biomart(genes = c(rownames(g2v1.down)),mart = "fungi_mart",dataset = "moryzae_eg_gene",attributes = c("go_id"),filters  = "broad_magnaporthe_db")
+> View(g2v1.down.gene.2)
+> g2v1.up.gene.2<-biomart(genes = c(rownames(g2v1.up)),mart = "fungi_mart",dataset = "moryzae_eg_gene",attributes = c("go_id"),filters  = "broad_magnaporthe_db")
