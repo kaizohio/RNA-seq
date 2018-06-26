@@ -24,3 +24,9 @@ p <- ggplot(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = 
  legend.key.size =  unit(0.2, "in"), plot.title = element_text(size = 11, hjust = 0.5)) +
  labs(x = NULL, title = "Gene Ontology (GO) Annotation")
 > p
+
+
+
+####################################
+k<-data.frame(table(kk$go_id))
+#####################################
