@@ -31,3 +31,15 @@ p <- ggplot(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = 
 ####################################
 k<-data.frame(table(kk$go_id))
 #####################################
+
+####################################################################################################################################################################################
+
+p <- ggplot(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = `Percentage of genes`, fill = Domain)) +theme_bw()+
+     geom_col(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = `Number of genes`/normalizer)) +
+     scale_y_continuous(sec.axis = sec_axis(trans = ~.*normalizer, name = "Number of genes")) +
+     theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),axis.line = element_line(colour = "black",size = 0.5, linetype = "solid"),axis.text.x = element_text(angle = 70, hjust = 1), axis.title.y = element_text(size = 8),
+           legend.text = element_text(size = 7), legend.title = element_text(size = 8),
+           legend.key.size =  unit(0.2, "in"), plot.title = element_text(size = 11, hjust = 0.5)) +
+     labs(x = NULL, title = "Gene Ontology (GO) Annotation")
+ ################################################################################################################################################
