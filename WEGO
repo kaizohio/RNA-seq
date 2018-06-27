@@ -10,7 +10,7 @@ colnames(kk)<-c("ID","Description","definition","Domain","Number of genes","Perc
 
 WEGO2<-kk %>%
          group_by('Domain') %>%
-         top_n(15, `Percentage of genes`) %>% 
+         top_n(45, `Percentage of genes`) %>% 
          ungroup() %>% 
          arrange(Domain, `Percentage of genes`) %>% 
          mutate(Position = n():1)  
