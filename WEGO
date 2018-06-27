@@ -9,12 +9,13 @@ colnames(kk)<-c("ID","Description","definition","Domain","Number of genes","Perc
 
 
 WEGO2<-kk %>%
-    +     group_by('Domain') %>%
-    +      top_n(5, `Percentage of genes`) %>% 
-    +      ungroup() %>% 
-    +      arrange(Domain, `Percentage of genes`) %>% 
-    +     mutate(Position = n():1)  
+         group_by('Domain') %>%
+         top_n(5, `Percentage of genes`) %>% 
+         ungroup() %>% 
+         arrange(Domain, `Percentage of genes`) %>% 
+         mutate(Position = n():1)  
 
+normalizer <- max(WEGO2$`Number of genes`)/max(WEGO2$`Percentage of genes`)
 
 p <- ggplot(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = `Percentage of genes`, fill = Domain)) +
  geom_col(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = `Number of genes`/normalizer)) +
