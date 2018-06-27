@@ -1,0 +1,3 @@
+ k2<-c("heart development"       , "phosphorylation")
+> chord <- chord_dat(data = circ, genes = EC$genes, process = k2)
+> GOChord(chord)
