@@ -1,3 +1,14 @@
- k2<-c("heart development"       , "phosphorylation")
-> chord <- chord_dat(data = circ, genes = EC$genes, process = k2)
-> GOChord(chord)
+#toydata in GOplot
+#data(EC)
+
+
+
+
+ View(circ)
+ k1<-read.csv("DV.csv",sep = ",",header = TRUE)
+ k2<-read.csv("gene.csv",sep = ",",header = TRUE)
+ circ<-circle_dat(k1,k2)
+View(circ)
+kk<-read.csv("term.csv",sep = ",",header = TRUE)
+chord <- chord_dat(circ, k1$genes, kk$Term)
+GOChord(chord, space = 0.02, gene.order = 'logFC', gene.space = 0.25, gene.size = 3)
