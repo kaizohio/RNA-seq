@@ -20,3 +20,6 @@ k2<-read.csv("G3/group3vsgroup2.csv",sep = ",",header = TRUE)
 k3<-read.csv("G3/Gene13.csv",sep = ",",header = TRUE)
 circ<-circle_dat(k1,k3)
 GOCircle(subset(circ,count >=2))
+
+ abc<-circ %>% arrange(desc(count)
+ GOCircle(abc)
