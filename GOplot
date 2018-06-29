@@ -12,3 +12,10 @@ View(circ)
 kk<-read.csv("term.csv",sep = ",",header = TRUE)
 chord <- chord_dat(circ, k1$genes, kk$Term)
 GOChord(chord, space = 0.02, gene.order = 'logFC', gene.space = 0.25, gene.size = 3)
+
+
+###################################################################################################
+k1<-read.csv("G3/DV13.csv",sep = ",",header = TRUE)
+k2<-read.csv("G3/group3vsgroup2.csv",sep = ",",header = TRUE)
+k3<-read.csv("G3/Gene13.csv",sep = ",",header = TRUE)
+circ<-circle_dat(k1,k3)
