@@ -7,6 +7,7 @@
  View(circ)
  k1<-read.csv("DV.csv",sep = ",",header = TRUE)
  k2<-read.csv("gene.csv",sep = ",",header = TRUE)
+  colnames(k2)<-c('ID','baseMean','logFC','lfcSE','stat','P.Value','adj.P.Val')
  circ<-circle_dat(k1,k2)
 View(circ)
 kk<-read.csv("term.csv",sep = ",",header = TRUE)
