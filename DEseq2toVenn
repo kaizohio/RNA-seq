@@ -78,11 +78,20 @@ vennDiagram(count.3,include = c("up","down"),names=NULL, cex=c(1.5,1,0.7), lwd=1
 2018.06.09 UPDATE
 
 ####################################################################################################
+library(lima)
+library(DESeq2)
 
+# got the gene list from rice blast database, then read as dataframe
+comb1<-read.csv("geneID.csv",sep=",",header=TRUE)
+comb<-comb1$X
+
+# Previously we got the ouput from DESeq2
 
 res1<-read.csv("group2vsgroup1.csv",sep = ",",header = TRUE)
 res2<-read.csv("group3vsgroup1.csv",sep = ",",header = TRUE)
 res3<-read.csv("group2vsgroup1.csv",sep = ",",header = TRUE)
+
+# Filter up-regulate and down-regulate gene 
 
 group2vsgroup1.up<-subset(res1,res1$log2FoldChange>1&res1$padj<0.05)
 group2vsgroup1.down<-subset(res1,res1$log2FoldChange< -1&res1$padj<0.05)
@@ -91,6 +100,7 @@ group3vsgroup1.down<-subset(res2,res2$log2FoldChange< -1&res1$padj<0.05)
 group2vsgroup3.up<-subset(res3,res3$log2FoldChange>1&res3$padj<0.05)
 group2vsgroup3.down<-subset(res3,res3$log2FoldChange< -1&res3$padj<0.05)
 
+ 
 group2vsgroup1.up.gene<-group2vsgroup1.up$X
 group2vsgroup1.down.gene<-group2vsgroup1.down$X
 group3vsgroup1.up.gene<-group3vsgroup1.up$X
@@ -98,6 +108,7 @@ group3vsgroup1.down.gene<-group3vsgroup1.down$X
 group2vsgroup3.up.gene<-group2vsgroup3.up$X
 group2vsgroup3.down.gene<-group2vsgroup3.down$X
 
+# If gene present in the file then return TRUE, or else return FALSE
 group2vsgroup1.up.gene.2<-comb%in%group2vsgroup1.up.gene
 group2vsgroup1.down.gene.2<-comb%in%group2vsgroup1.down.gene
 group3vsgroup1.up.gene.2<-comb%in%group3vsgroup1.up.gene
@@ -105,16 +116,23 @@ group3vsgroup1.down.gene.2<-comb%in%group3vsgroup1.down.gene
 group2vsgroup3.up.gene.2<-comb%in%group2vsgroup3.up.gene
 group2vsgroup3.down.gene.2<-comb%in%group2vsgroup3.down.gene
 
+# generate the combine table
 count.6<-cbind(group2vsgroup1.up.gene.2,group2vsgroup1.down.gene.2,group3vsgroup1.up.gene.2,group3vsgroup1.down.gene.2,group2vsgroup3.up.gene.2,group2vsgroup3.down.gene.2)
-write.csv(as.data.frame(count.6),file = paste("degenelog2fabove1",".csv",sep = ""))
-kai2<-read.csv("degenelog2fabove1 copy 3.csv",sep = ",",header = TRUE)
 
-Group2vsGroup1<-kai2$group2vsgroup1.up.gene.2-kai2$group2vsgroup1.down.gene.2
-Group3vsGroup1<-kai2$group3vsgroup1.up.gene.2-kai2$group3vsgroup1.down.gene.2
-Group2vsGroup3<-kai2$group2vsgroup3.up.gene.2-kai2$group2vsgroup3.down.gene.2
+# export the combine table
+write.csv(as.data.frame(count.6),file = paste("degenelog2fabove1",".csv",sep = ""))
+
+# Becasue I am not good at command line, so I make it in excel, I replace TRUE to 1, FALSE to 0, save as new file named "degenelog2fabove1-1.csv")
+degene<-read.csv("degenelog2fabove1-1.csv",sep = ",",header = TRUE)
+
+# In package limma, 1 means up-regulate , -1 means down-regulate, 0 means no regulate, so I make a final table:
+Group2vsGroup1<-degene$group2vsgroup1.up.gene.2-degene$group2vsgroup1.down.gene.2
+Group3vsGroup1<-degene$group3vsgroup1.up.gene.2-degene$group3vsgroup1.down.gene.2
+Group2vsGroup3<-degene$group2vsgroup3.up.gene.2-degene$group2vsgroup3.down.gene.2
 
 count.3<-cbind(Group2vsGroup1,Group3vsGroup1,Group2vsGroup3)
 
+# Generate venn Diagram
 vennDiagram(count.3,include = c("up","down"), cex=c(1.5,1,0.7), lwd=1,circle.col=c("red","blue","green"), counts.col=c("red","blue"), show.include=2)
 
 
