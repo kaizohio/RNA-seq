@@ -27,3 +27,6 @@ circ<-circle_dat(k1,k2)
 
 chord <- chord_dat(data = circ, genes = k3, process = k4$Term)
 GOChord(chord, space = 0.02, gene.order = 'logFC', gene.space = 0.25, gene.size = 3,limit = c(1,2))
+
+
+kk<-c('metabolic process',	'catalytic activity',	'phosphopantetheine binding',	'transferase activity',	'hydrolase activity',	'membrane',	'integral component of membrane',	'oxidation-reduction process',	'proteolysis',	'metallopeptidase activity',	'metalloendopeptidase activity',	'metal ion binding',	'protein binding',	'carbohydrate metabolic process',	'cell wall',	'fungal-type cell wall',	'structural constituent of cell wall',	'extracellular region',	'pathogenesis',	'nucleic acid binding')
