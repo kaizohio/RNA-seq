@@ -39,12 +39,17 @@ library(dplyr)
 setwd('Dropbox/test2/test3/Vennlog1/new/test/Goplot/Goplot/Group3/G1/')
 k1<-read.csv("DV-G1.csv",sep = ",",header = TRUE)
 k2<-read.csv("group1vsgroup2.csv")
-k3<-read.csv("G1V2.csv")
+k3<-read.csv("G1V2.csv",sep = ",",header = TRUE)
 k4<-read.csv("process-effector-1.csv",sep = ",",header = FALSE)
+k5<-read.csv("group1vsgroup3.csv",sep = ",",header = TRUE)
+k6<-read.csv("G1V3.csv",sep = ",",header = TRUE)
+
 circ<-circle_dat(k1,k2)
 circ2<-circ %>% arrange(desc(count))
 
 write.csv(as.data.frame(circ),file = paste("circ1V2",".csv",sep = ""))
+
+ grep -f liste.txt circ1V2.csv > circ_G1V2_filter_effector_level3.csv
 
 kk<-read.csv("circ_G1V2_filter_effector_level3.csv",sep = ",",header = FALSE)
 colnames(kk)<-(c("","category","ID","term","count","genes","logFC","adj_pval","zscore"))
@@ -55,3 +60,16 @@ colnames(kk)<-(c("","category","ID","term","count","genes","logFC","adj_pval","z
 
 chord <- chord_dat(data = circ2, genes = k3, process = k4$V2)
 GOChord(chord, space = 0.02, gene.order = 'logFC', gene.space = 0.25, gene.size = 3,limit = c(1,2))
+
+
+circ3<-circle_dat(k1,k5)
+circ4<-circ3 %>% arrange(desc(count))
+write.csv(as.data.frame(circ3),file = paste("circ1V3",".csv",sep = ""))
+
+grep -f liste.txt circ1V3.csv > circ_G1V3_filter_effector_level3.csv
+
+kk3<-read.csv("circ_G1V3_filter_effector_level3.csv",sep = ",",header = FALSE)
+colnames(kk3)<-(c("","category","ID","term","count","genes","logFC","adj_pval","zscore"))
+kk3<-kk3[,-1]
+ kk2<-kk3 %>% arrange(desc(count))
+ GOCircle(kk3,nsub = 5)
