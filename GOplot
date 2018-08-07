@@ -71,5 +71,8 @@ grep -f liste.txt circ1V3.csv > circ_G1V3_filter_effector_level3.csv
 kk3<-read.csv("circ_G1V3_filter_effector_level3.csv",sep = ",",header = FALSE)
 colnames(kk3)<-(c("","category","ID","term","count","genes","logFC","adj_pval","zscore"))
 kk3<-kk3[,-1]
- kk2<-kk3 %>% arrange(desc(count))
+ kk4<-kk3 %>% arrange(desc(count))
  GOCircle(kk3,nsub = 5)
+ 
+  chord<-chord_dat(data = circ4,genes = k6,process = k4$V2)
+  GOChord(chord, space = 0.02, gene.order = 'logFC', gene.space = 0.25, gene.size = 3,limit = c(1,2))
