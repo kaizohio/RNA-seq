@@ -44,3 +44,4 @@ rownames(g2v1.up)<-g2v1.up$group2vsgroup1.up.gene
 > g2v1.down.gene.2<-biomart(genes = c(rownames(g2v1.down)),mart = "fungi_mart",dataset = "moryzae_eg_gene",attributes = c("go_id"),filters  = "broad_magnaporthe_db")
 > View(g2v1.down.gene.2)
 > g2v1.up.gene.2<-biomart(genes = c(rownames(g2v1.up)),mart = "fungi_mart",dataset = "moryzae_eg_gene",attributes = c("go_id"),filters  = "broad_magnaporthe_db")
+g1<-biomart(genes =c(rownames(k1)),mart = "fungi_mart",dataset = "moryzae_eg_gene",attributes = c("description","chromosome_name","start_position","end_position"),filters  = "broad_magnaporthe_db")
