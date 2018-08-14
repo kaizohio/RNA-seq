@@ -1,0 +1,12 @@
+
+
+k5<-k1$s20170005[!duplicated(k1$s20170005)]
+k5.1<-as.data.frame(k5)
+
+rownames(k5.1)<-k5.1$k5
+
+k5<-rownames(k5.1)
+
+aa<-comb%in%k5
+
+write.csv(as.data.frame(aa),file = paste("11",".csv",sep = ""))
