@@ -12,3 +12,6 @@ p<-ggplot(k1,aes(x=factor(V2),y=V1))
 > with(k,ggplot(k1,aes(x=cat,y=len))+geom_point(size=1)+theme_bw())
 
 p<-ggplot(k1,aes(x=cat,y=len,color=col))+geom_point(size=2)+theme_bw()+theme(legend.title=element_blank())+scale_x_discrete(name="")+theme(axis.text.x=element_text(angle = -45, hjust = 0))
+
+
+http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
