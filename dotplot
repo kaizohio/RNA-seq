@@ -1,0 +1,13 @@
+p<-ggplot(k1,aes(x=factor(V2),y=V1))
+
+ p+geom_point(size=5)
+
+ p+geom_boxplot(pch=6,cex=0.5)+geom_point(position="jitter",pch=16,cex=1)
+
+ p<-ggplot(k1,aes(x=Cat,y=Length)）
+
+ p+geom_point(size=1)+theme_bw()
+
+
+> with(k,ggplot(k1,aes(x=cat,y=len))+geom_point(size=1)+theme_bw())
+
