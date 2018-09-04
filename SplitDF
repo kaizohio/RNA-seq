@@ -1,0 +1,5 @@
+
+library(tidyr)
+k1<-read.csv("diu.csv",sep = ",",header = FALSE)
+k2<-separate_rows(k1, V2,sep = ",")
+View(k2)
