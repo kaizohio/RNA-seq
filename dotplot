@@ -15,3 +15,6 @@ p<-ggplot(k1,aes(x=cat,y=len,color=col))+geom_point(size=2)+theme_bw()+theme(leg
 
 
 http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/
+
+
+p<-ggplot(k1,aes(x=Cat,y=`Length (AA)`,color=Color))+geom_point(size=1)+theme_bw()+theme(legend.title=element_blank())+scale_x_discrete(name="")+theme(axis.text.x=element_text(angle = -45, hjust = 0))+coord_cartesian(ylim = c(0, 1000))+scale_colour_brewer(palette = "Set2")
