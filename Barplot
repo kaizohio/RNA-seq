@@ -1,0 +1,2 @@
+> k3<-k2[order(-k2$V2,-k2$V4,-k2$V3,-k2$V5),]
+> barplot(t(as.matrix(k3)), col=rainbow(5),  xlab="", ylab="", border=NA,las=2,cex.names = 0.8,axes = FALSE)
