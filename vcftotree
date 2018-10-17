@@ -1,0 +1,19 @@
+library(gdsfmt)
+library(SNPRelate)
+library(ggplot2)
+vcf.fn <- "*.vcf"
+snpgdsVCF2GDS(vcf.fn,"data.gds",method ="biallelic.only")
+genofile<-snpgdsOpen("data.gds")
+set.seed(100)
+ibs.hc<-snpgdsHCluster(snpgdsIBS(genofile,num.thread=2, autosome.only=FALSE))
+rv <- snpgdsCutTree(ibs.hc)
+plot(rv$dendrogram,main="Within 10 kb of ACE-1")
+dissMatrix  =  snpgdsIBS(genofile , sample.id=NULL, autosome.only=TRUE,remove.monosnp=TRUE,  maf=NaN, missing.rate=NaN, num.thread=2, verbose=TRUE)
+cutTree
+snpgdsClose(genofile)
+snpgdsDrawTree(cutTree, main = "Phylogenetic Tree",edgePar=list(col=rgb(0.5,0.5,0.5,0.75),t.col="black"),
+               y.label.kinship=T,leaflab="perpendicular")
+               
+               
+               
+              Source "https://benbowlab.github.io/Phylogeny.html"
