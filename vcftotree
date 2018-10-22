@@ -17,3 +17,6 @@ snpgdsDrawTree(cutTree, main = "Phylogenetic Tree",edgePar=list(col=rgb(0.5,0.5,
                
                
               Source "https://benbowlab.github.io/Phylogeny.html"
+
+
+Trick: sed -i -e "s/chrA02/02/g" test2.vcf
