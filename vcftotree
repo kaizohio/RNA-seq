@@ -20,3 +20,6 @@ snpgdsDrawTree(cutTree, main = "Phylogenetic Tree",edgePar=list(col=rgb(0.5,0.5,
 
 
 Trick: sed -i -e "s/chrA02/02/g" test2.vcf
+
+
+bcftools view  -i  'MIN(FMT/DP>2) && 'MAF>0.001' my.vcf.gz
