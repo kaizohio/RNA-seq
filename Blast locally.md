@@ -35,3 +35,6 @@ blastn -perc_identity 100 -db nt/nt -query test.fasta -outfmt '6 qseqid sseqid e
 #########
 
 https://github.com/trinityrnaseq/trinityrnaseq/wiki
+
+
+blastp -query Japonica/3330.fasta -subject Indica.fa -outfmt '6 qseqid sseqid evalue bitscore' -out 3330.out  -max_target_seqs 1
