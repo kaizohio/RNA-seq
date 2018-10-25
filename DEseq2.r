@@ -42,6 +42,10 @@ dds<-DESeqDataSetFromMatrix(countData=localTable,colData,formula(~condition))
 
 dds <- DESeq(dds)
 rld <- rlog(dds)
+
+res_ko1=results(dds,contrast=c("condition","ko1","control"))
+
+#######################################################################################################################
 #1. Plot MA to check distribution of differentially expressed genes 
 plotMA(dds)
 
