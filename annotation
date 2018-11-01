@@ -48,3 +48,7 @@ g1<-biomart(genes =c(rownames(k1)),mart = "fungi_mart",dataset = "moryzae_eg_gen
 #########################################################################################################################################################
  k4<-biomart(genes = k1$V1,mart = "fungi_mart",dataset = "moryzae_eg_gene",attributes = c("uniprotsptrembl"),filters  = "broad_magnaporthe_db")
  write.csv(as.data.frame(k4),file = paste("group1_up_uniprot",".csv",sep = ""))
+
+
+
+ b<-getAttributes(mart = "plants_mart",dataset = "osativa_eg_gene")
