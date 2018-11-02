@@ -46,12 +46,6 @@ genelist<-data.frame(row.names = k1$V1,k2)
 
 
 d = read.csv(your_csv_file)
-## assume 1st column is ID
-## 2nd column is FC
-
-## feature 1: numeric vector
 geneList = d[,2]
-## feature 2: named vector
 names(geneList) = as.character(d[,1])
-## feature 3: decreasing order
 geneList = sort(geneList, decreasing = TRUE)
