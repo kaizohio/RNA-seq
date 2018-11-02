@@ -12,6 +12,7 @@ japonica<-hub[['AH59059']]
 
 length(keys(riceblast))[1]
 
+gene <- names(geneList)[abs(geneList) > 1]
 
 gene.df <- bitr(gene, fromType = "ENTREZID",
         toType = c( "SYMBOL"),
