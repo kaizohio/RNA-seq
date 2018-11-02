@@ -13,6 +13,25 @@ japonica<-hub[['AH59059']]
 length(keys(riceblast))[1]
 
 
+gene.df <- bitr(gene, fromType = "ENTREZID",
+        toType = c( "SYMBOL"),
+        OrgDb = riceblast)
+
 ego<-enrichGO(gene =gene, OrgDb = riceblast,pvalueCutoff = 0.05,qvalueCutoff = 0.05)
 ego<-enrichGO(gene =gene, ont="CC",pAdjustMethod = "BH",OrgDb = riceblast,pvalueCutoff = 0.1,qvalueCutoff = 0.1)
-ego2<-dropGO(ego,term = "GO:0016712")
+ego2 <- enrichGO(gene= gene.df$SYMBOL,OrgDb = riceblast,pAdjustMethod = "BH",pvalueCutoff = 1,qvalueCutoff = 1,keyType = "SYMBOL")
+ego3<-dropGO(ego2,term = "GO:0016712")
+
+
+1. Prepare geneList
+2. Prepare gene.df
+
+
+> gene<-as.character(k1$NCBI.gene.ID)
+> gene.df <- bitr(gene, fromType = "ENTREZID",
++                 toType = c("SYMBOL"),
++                 OrgDb = riceblast)
+
+> ego<-enrichGO(gene = gene,universe = names(geneList),OrgDb = riceblast,pAdjustMethod = "BH",pvalueCutoff = 1,qvalueCutoff = 1)
+  ego2<-enrichGO(gene = gene.df$SYMBOL,OrgDb = riceblast,pAdjustMethod = "BH",pvalueCutoff = 1,qvalueCutoff = 1,keyType = 'SYMBOL')
+  
