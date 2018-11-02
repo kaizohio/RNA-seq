@@ -1,6 +1,6 @@
 library(AnnotationHub)
 hub <- AnnotationHub()
-qhub <- AnnotationHub("oryza")
+query(hub,"oryza")
 
 AH10538 | hom.Magnaporthe_oryzae.inp8.sqlite  
 AH10561 | hom.Oryza_sativa.inp8.sqlite                      
