@@ -39,11 +39,11 @@ ego3<-dropGO(ego2,term = "GO:0016712")
 genelist<-data.frame(row.names = k1$V1,k2)
 
 
-
-
-
-
-
+ego <- setReadable(ego, OrgDb = riceblast)
+ego2 <- setReadable(ego2, OrgDb = riceblast)
+cnetplot(ego2, foldChange=geneList)
+enrichMap(ego, vertex.label.cex=1.2, layout=igraph::layout.kamada.kawai)
+dotplot(ego, showCategory=30)
 
 d = read.csv(your_csv_file)
 geneList = d[,2]
