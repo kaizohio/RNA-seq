@@ -1,0 +1,16 @@
+library(AnnotationHub)
+hub <- AnnotationHub()
+qhub <- AnnotationHub("oryza")
+
+AH10538 | hom.Magnaporthe_oryzae.inp8.sqlite  
+AH10561 | hom.Oryza_sativa.inp8.sqlite                      
+AH59059 | org.Oryza_sativa_Japonica_Group.eg.sqlite  
+AH59445 | org.Magnaporthe_oryzae_70-15.eg.sqlite 
+
+riceblast<-hub[['AH59445']]
+japonica<-hub[['AH59059']]
+
+length(keys(riceblast))[1]
+
+
+ego<-enrichGO(gene =gene, OrgDb = riceblast,pvalueCutoff = 0.05,qvalueCutoff = 0.05)
