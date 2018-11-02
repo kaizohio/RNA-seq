@@ -14,3 +14,5 @@ length(keys(riceblast))[1]
 
 
 ego<-enrichGO(gene =gene, OrgDb = riceblast,pvalueCutoff = 0.05,qvalueCutoff = 0.05)
+ego<-enrichGO(gene =gene, ont="CC",pAdjustMethod = "BH",OrgDb = riceblast,pvalueCutoff = 0.1,qvalueCutoff = 0.1)
+ego2<-dropGO(ego,term = "GO:0016712")
