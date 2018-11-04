@@ -1,0 +1,2 @@
+bwa index ref.fa
+bowtie2-build genome.fa genome
