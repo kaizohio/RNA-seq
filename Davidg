@@ -1,4 +1,4 @@
-library(Cairo)
+
 GO_BP<-read.table("david_bp.tsv",header = TRUE,sep = "\t")
 
 
