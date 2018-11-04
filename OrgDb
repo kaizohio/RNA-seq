@@ -55,3 +55,19 @@ geneList = sort(geneList, decreasing = TRUE)
 
 
 source:http://guangchuangyu.github.io/2016/01/go-analysis-using-clusterprofiler/
+
+d<-read.csv("Genelist.csv",sep = ",",header = TRUE)
+geneList = d[,2]
+names(geneList) = as.character(d[,1])
+geneList = sort(geneList, decreasing = TRUE)
+
+
+gene <- names(geneList)[abs(geneList) > 1]
+
+ego<-enrichGO(gene = gene,universe = names(geneList),OrgDb = riceblast,pAdjustMethod = "BH",pvalueCutoff = 0.01,qvalueCutoff = 0.05)
+
+ego2<-enrichGO(gene = gene.df$V1,OrgDb = riceblast,pAdjustMethod = "BH",pvalueCutoff = 0.01,qvalueCutoff = 0.05,keyType = 'SYMBOL')
+
+ego <- setReadable(ego, OrgDb = riceblast)
+
+cnetplot(ego, foldChange=geneList)
