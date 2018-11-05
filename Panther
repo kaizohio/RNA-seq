@@ -1,0 +1,10 @@
+k1<-read.table("analysis.txt",sep = '\t',header = TRUE)
+colnames(k1)<-c("Term","Ref","Count","Expected","over/under","foldEnrichment","PValue")
+k2<-subset(k1,k1$PValue<0.05)
+ggplot(data=k2)+
+  geom_bar(aes(x=reorder(Term,Count),y=Count, fill=-log10(PValue)), stat='identity') + 
+  coord_flip() +
+  scale_fill_gradient(expression(-log["10"](P.value)),low="red", high = "blue") +
+  xlab("") +
+  ylab("Gene count") +
+  scale_y_continuous(expand=c(0, 0))+labs(title = "Sig Go terms of DE genes-BP")+theme(plot.title = element_text(size=10))
