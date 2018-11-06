@@ -64,4 +64,4 @@ p <- ggplot(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = 
  legend.text = element_text(size = 7), legend.title = element_text(size = 8),
  legend.key.size =  unit(0.2, "in"), plot.title = element_text(size = 11, hjust = 0.5)) +
  labs(x = NULL, title = "Gene Ontology (GO) Annotation")
-> p
+p
