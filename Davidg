@@ -65,3 +65,6 @@ p <- ggplot(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = 
  legend.key.size =  unit(0.2, "in"), plot.title = element_text(size = 11, hjust = 0.5)) +
  labs(x = NULL, title = "Gene Ontology (GO) Annotation")
 p
+######################################################################################
+Goplot
+colnames(k1)<-c("Category","ID","Term","Count","X.","adj_pval","Genes","List.Total","Pop.Hits","Pop.Total","Fold.Enrichment","Bonferroni","Benjamini","FDR")
