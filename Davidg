@@ -1,14 +1,23 @@
 library(ggplot2)
-GO_BP<-read.table("david_bp.tsv",header = TRUE,sep = "\t")
+k1<-read.table("david_bp.tsv",header = TRUE,sep = "\t")
 
 
-ggplot(data=GO_BP)+
-  geom_bar(aes(x=reorder(Term,Count),y=Count, fill=-log10(PValue)), stat='identity') + 
-  coord_flip() +
-  scale_fill_gradient(expression(-log["10"](P.value)),low="red", high = "blue") +
-  xlab("") +
-  ylab("Gene count") +
-  scale_y_continuous(expand=c(0, 0))+labs(title = "Sig Go terms of DE genes-BP")+theme(plot.title = element_text(size=10))
+ggplot(k1,aes(x=Fold.Enrichment,y=reorder(Term,Fold.Enrichment))) + 
+     geom_point(aes(size=Count,color=-1*log10(Benjamini)))+
+     scale_colour_gradient(low="green",high="red")+
+     labs(
+         color=expression(-log[10](P.adj)),
+         size="Gene number",
+         x="Fold enrichment"
+         # y="Pathway name",
+         # title="Go enrichment")
+     )+
+     theme_bw()+
+     theme(
+         axis.text.y = element_text(size = rel(1.3)),
+         axis.title.x = element_text(size=rel(1.0)),
+         axis.title.y = element_blank(),plot.title = element_text(size=15,hjust=0.5)
+     )+labs(title = "Go enrichment analysis")
 
 ############################################################################################################################
 k2<-k1%>%group_by('Category')%>%arrange(Category,desc(k1$Count))%>%mutate(Position = n():1)
