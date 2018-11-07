@@ -64,7 +64,7 @@ pathway$Term<-str_split_fixed(pathway$Term,":",2)[,2]
      theme(
          axis.text.y = element_text(size = rel(1.3)),
          axis.title.x = element_text(size=rel(1.3)),
-         axis.title.y = element_blank()
+         axis.title.y = element_blank(),plot.title = element_text(size=15,hjust=0.5)
      )+labs(title = "KEGG Pathway enrichment")
 #################################################################################
 WEGO:
