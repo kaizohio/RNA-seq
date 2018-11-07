@@ -11,16 +11,19 @@ ggplot(data=GO_BP)+
   scale_y_continuous(expand=c(0, 0))+labs(title = "Sig Go terms of DE genes-BP")+theme(plot.title = element_text(size=10))
 
 ############################################################################################################################
-  theme(
-    axis.text.x=element_text(color="black",size=rel(1.5)),
-    axis.text.y=element_text(color="black", size=rel(1.6)),
+k2<-k1%>%group_by('Category')%>%arrange(Category,desc(k1$Count))%>%mutate(Position = n():1)
+ggplot(data=k2)+
+  geom_bar(aes(x=reorder(stringr::str_wrap(Term),Position),y=Count, fill=-log10(PValue)), stat='identity') + 
+  coord_flip() +
+  scale_fill_gradient(expression(-log["10"](P.value)),low="red", high = "blue") +
+  xlab("") +
+  ylab("Gene count") +
+  scale_y_continuous(expand=c(0, 0))+labs(title = "Sig Go terms of DE genes")+theme(plot.title = element_text(size=15,hjust=0.5),axis.text.x=element_text(color="black",size=rel(1.5)),
+    axis.text.y=element_text(color="black", size=rel(1.0)),
     axis.title.x = element_text(color="black", size=rel(1.6)),
     legend.text=element_text(color="black",size=rel(1.0)),
     legend.title = element_text(color="black",size=rel(1.1))
-    # legend.position=c(0,1),legend.justification=c(-1,0)
-    # legend.position="top",
-    )
-
+ 
 ###########################################################################################################
 library(stringr)
 pathway<-read.table("david_kegg.tsv",sep = "\t",header = TRUE)
