@@ -23,6 +23,18 @@ ggplot(data=k2)+
     axis.title.x = element_text(color="black", size=rel(1.6)),
     legend.text=element_text(color="black",size=rel(1.0)),
     legend.title = element_text(color="black",size=rel(1.1))
+ ###########################################################################################################
+ ggplot(data=kb)+
+  geom_bar(aes(x=reorder(stringr::str_wrap(Term),Count),y=Count, fill=-log10(Benjamini)), stat='identity') + 
+  coord_flip() +
+  scale_fill_gradient(expression(-log["10"](P.adj)),low="red", high = "blue") +
+  xlab("") +
+  ylab("Gene count") +
+  scale_y_continuous(expand=c(0, 0))+labs(title = "Sig Go terms of DE genes")+theme(plot.title = element_text(size=15,hjust=0.5),axis.text.x=element_text(color="black",size=rel(1.5)),
+    axis.text.y=element_text(color="black", size=rel(1.0)),
+    axis.title.x = element_text(color="black", size=rel(1.0)),
+    legend.text=element_text(color="black",size=rel(1.0)),
+    legend.title = element_text(color="black",size=rel(1.1)))
  
 ###########################################################################################################
 library(stringr)
@@ -70,4 +82,31 @@ p <- ggplot(data = WEGO2, aes(x = fct_reorder(Description, desc(Position)), y = 
 p
 ######################################################################################
 Goplot
-colnames(k1)<-c("Category","ID","Term","Count","X.","adj_pval","Genes","List.Total","Pop.Hits","Pop.Total","Fold.Enrichment","Bonferroni","Benjamini","FDR")
+
+colnames(k1)<-c("Category","ID","Term","Count","X.","Pvalue","Genes","List.Total","Pop.Hits","Pop.Total","Fold.Enrichment","Bonferroni","adj_pval","FDR")
+
+k1<-read.table("david.tsv",sep = "\t",header = TRUE)
+k2<-read.csv("JaponicaVSindica2.csv",header = TRUE)
+k3<-read.csv("genelist.csv",header = TRUE)
+
+colnames(k1)<-c("Category","ID","Term","Count","X.","Pvalue","Genes","List.Total","Pop.Hits","Pop.Total","Fold.Enrichment","Bonferroni","adj_pval","FDR")
+colnames(k2)<-c('ID','baseMean','logFC','lfcSE','stat','P.Value','adj.P.Val')
+
+BP<-subset(k1,k1$Category=="GOTERM_BP_DIRECT")
+CC<-subset(k1,k1$Category=="GOTERM_CC_DIRECT")
+MF<-subset(k1,k1$Category=="GOTERM_MF_DIRECT")
+
+
+circ_BP<-circle_dat(BP,k2)
+circ_CC<-circle_dat(CC,k2)
+circ_MF<-circle_dat(MF,k2)
+
+
+chord_BP <- chord_dat(data = circ_BP, genes = k3, process = as.character(BP$Term))
+chord_CC <- chord_dat(data = circ_CC, genes = k3, process = as.character(CC$Term))
+chord_MF <- chord_dat(data = circ_MF, genes = k3, process = as.character(MF$Term))
+
+
+GOHeat_fix(chord_BP, nlfc = 1, fill.col = c('red', 'yellow','green'))
+GOHeat_fix(chord_CC, nlfc = 1, fill.col = c('red', 'yellow','green'))
+GOHeat_fix(chord_MF, nlfc = 1, fill.col = c('red', 'yellow','green'))
