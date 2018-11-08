@@ -17,3 +17,29 @@ k1<-cbind(k1,GeneRatio)
          axis.title.x = element_text(size=rel(1.0)),
          axis.title.y = element_blank(),plot.title = element_text(size=15,hjust=0.5)
      )+labs(title = "Go enrichment analysis")
+#########################################################################################################
+Goplot
+k1$TestSet.Sequences<-chartr(";",",",k1$TestSet.Sequences)
+colnames(k1)<-c("Tags","ID","Term","Category","adj_pval","P.Value","Count","Ref-count","Genes","Generatio")
+
+k2<-read.csv("JaponicaVSindica2.csv",header = TRUE)
+colnames(k2)<-c('ID','baseMean','logFC','lfcSE','stat','P.Value','adj.P.Val')
+k3<-read.csv("genelist.csv",header = TRUE)
+
+BP<-subset(k1,k1$Category=="BIOLOGICAL_PROCESS")
+CC<-subset(k1,k1$Category=="GOTERM_CC_DIRECT")
+MF<-subset(k1,k1$Category=="MOLECULAR_FUNCTION")
+
+
+circ_BP<-circle_dat(BP,k2)
+circ_CC<-circle_dat(CC,k2)
+circ_MF<-circle_dat(MF,k2)
+
+chord_BP <- chord_dat(data = circ_BP, genes = k3, process = as.character(BP$Term))
+chord_CC <- chord_dat(data = circ_CC, genes = k3, process = as.character(CC$Term))
+chord_MF <- chord_dat(data = circ_MF, genes = k3, process = as.character(MF$Term))
+
+
+GOHeat_fix(chord_BP, nlfc = 1, fill.col = c('red', 'yellow','green'))
+GOHeat_fix(chord_CC, nlfc = 1, fill.col = c('red', 'yellow','green'))
+GOHeat_fix(chord_MF, nlfc = 1, fill.col = c('red', 'yellow','green'))
