@@ -93,3 +93,20 @@ ggplot(k1,aes(x=GeneRatio,y=reorder(Description,GeneRatio))) +
          axis.title.x = element_text(size=rel(1.0)),
          axis.title.y = element_blank(),plot.title = element_text(size=15,hjust=0.5)
      )+labs(title = "KEGG enrichment analysis")
+##############################################################################################################
+colnames(k1)<-c('ID','Term','GeneRatio','BgRatio','pvalue','adj_pval','qvalue','Genes','Category')
+k1$Genes<-chartr("/",",",k1$Genes)
+
+circ<-circle_dat(k1,k2)
+
+mgr00910<-subset(circ,circ$ID=='mgr00910')
+
+aa<-pathview(gene.data = geneList,pathway.id = 'mgr00910',species = 'mgr',gene.idtype = "KEGG",limit= list(gene=max(abs(mgr00910$logFC)), cpd=1))
+
+
+
+chord <- chord_dat(data = circ, genes = k3, process = as.character(k1$Term))
+
+GOHeat_fix(chord, nlfc = 1, fill.col = c('red', 'black','green'))
+
+GOCluster(circ, k1$Term, clust.by = 'logFC', term.width = 2)
