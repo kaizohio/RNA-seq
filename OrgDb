@@ -110,3 +110,5 @@ chord <- chord_dat(data = circ, genes = k3, process = as.character(k1$Term))
 GOHeat_fix(chord, nlfc = 1, fill.col = c('red', 'black','green'))
 
 GOCluster(circ, k1$Term, clust.by = 'logFC', term.width = 2)
+
+browseKEGG(mgrKEGG, 'mgr00350')
