@@ -83,7 +83,7 @@ ggplot(k1,aes(x=GeneRatio,y=reorder(Description,GeneRatio))) +
      labs(
          color=expression(-log[10](P.adj)),
          size="Gene number",
-         x="kegg enrichment"
+         x="GeneRatio"
          # y="Pathway name",
          # title="Go enrichment")
      )+
