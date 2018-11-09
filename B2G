@@ -62,3 +62,6 @@ chord_MF <- chord_dat(data = circ_MF, genes = k3, process = as.character(MF$Term
 GOHeat_fix(chord_BP, nlfc = 1, fill.col = c('red', 'yellow','green'))
 GOHeat_fix(chord_CC, nlfc = 1, fill.col = c('red', 'yellow','green'))
 GOHeat_fix(chord_MF, nlfc = 1, fill.col = c('red', 'yellow','green'))
+
+chord <- chord_dat(data = circ, genes = k3, process = as.character(k1$Term))
+GOCluster(circ, as.character(k1$Term), clust.by = 'logFC', term.width = 2
