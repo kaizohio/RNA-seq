@@ -46,7 +46,7 @@ colnames(k2)<-c('ID','baseMean','logFC','lfcSE','stat','P.Value','adj.P.Val')
 k3<-read.csv("genelist.csv",header = TRUE)
 
 BP<-subset(k1,k1$Category=="BIOLOGICAL_PROCESS")
-CC<-subset(k1,k1$Category=="GOTERM_CC_DIRECT")
+CC<-subset(k1,k1$Category=="CELLULAR_COMPONENT")
 MF<-subset(k1,k1$Category=="MOLECULAR_FUNCTION")
 
 
