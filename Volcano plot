@@ -10,3 +10,25 @@ with(subset(res, padj<.05 & abs(log2FoldChange)>1), textxy(log2FoldChange, -log1
 
 #######################################################################################################################
 with(res, plot(log2FoldChange, -log10(pvalue), pch=20, main="Volcano plot", xlim=c(-4,4),ylim = c(0,20)))
+#######################################################################################################################Pvalue
+with(res, plot(log2FoldChange, -log10(pvalue), pch=20, main="Volcano plot", xlim=c(-2.5,2.5),ylim=c(0,20)))
+
+with(subset(res, abs(log2FoldChange)>1), points(log2FoldChange, -log10(pvalue), pch=20, col="orange"))
+
+with(subset(res, padj<.05 & log2FoldChange > 1), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
+
+with(subset(res, padj<.05 & log2FoldChange < -1), points(log2FoldChange, -log10(pvalue), pch=20, col="blue"))
+
+with(subset(res, padj<.05 & abs(log2FoldChange) < 1), points(log2FoldChange, -log10(pvalue), pch=20, col="grey"))
+
+########################################################################################################################Padj
+
+with(res, plot(log2FoldChange, -log10(padj), pch=20, main="Volcano plot", xlim=c(-2.5,2.5),ylim=c(0,20)))
+
+with(subset(res, abs(log2FoldChange)>1), points(log2FoldChange, -log10(padj), pch=20, col="orange"))
+
+with(subset(res, padj<.05 & log2FoldChange > 1), points(log2FoldChange, -log10(padj), pch=20, col="red"))
+
+with(subset(res, padj<.05 & log2FoldChange < -1), points(log2FoldChange, -log10(padj), pch=20, col="blue"))
+
+with(subset(res, padj<.05 & abs(log2FoldChange) < 1), points(log2FoldChange, -log10(padj), pch=20, col="grey"))
