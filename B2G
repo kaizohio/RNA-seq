@@ -39,7 +39,7 @@ k1<-cbind(k1,GeneRatio)
 #########################################################################################################
 Goplot
 k1$TestSet.Sequences<-chartr(";",",",k1$TestSet.Sequences)
-colnames(k1)<-c("Tags","ID","Term","Category","adj_pval","P.Value","Count","Ref-count","Genes","Generatio")
+ colnames(k1)<-c("Tags","ID","Term","Category","adj_pval","P.Value","Count","Ref-count","BN","BM","Genes","Generatio")
 
 k2<-read.csv("JaponicaVSindica2.csv",header = TRUE)
 colnames(k2)<-c('ID','baseMean','logFC','lfcSE','stat','P.Value','adj.P.Val')
