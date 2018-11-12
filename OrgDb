@@ -112,3 +112,10 @@ GOHeat_fix(chord, nlfc = 1, fill.col = c('red', 'black','green'))
 GOCluster(circ, k1$Term, clust.by = 'logFC', term.width = 2)
 
 browseKEGG(mgrKEGG, 'mgr00350')
+#################################################################################################################
+d<-cbind(mgr01110$genes,mgr01110$logFC)
+geneList = as.numeric(d[,2])
+names(geneList) = as.character(d[,1])
+geneList = sort(geneList, decreasing = TRUE)
+
+aa<-pathview(gene.data = geneList,pathway.id = 'mgr01110',species = 'mgr',gene.idtype = "KEGG",limit= list(gene=max(abs(mgr01110$logFC)), cpd=1))
