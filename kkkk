@@ -1,0 +1,6 @@
+http://www.genome.jp/kegg-bin/get_htext?hsa00001+3101
+grep ^A hsa00001.keg
+grep '^C' osa00001.keg | grep "osa" | wc
+perl -alne '{if(/^C/){/PATH:hsa(\d+)/;$kegg=$1}else{print "$kegg\t$F[1]" if /^D/ and $kegg;}}' hsa00001.keg >kegg2gene.txt
+cut -f 1 kegg2gene.txt | sort -u | wc
+cut -f 2 kegg2gene.txt | sort -u | wc
