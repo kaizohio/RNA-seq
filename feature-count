@@ -1,0 +1,1 @@
+for f in *.txt;do sed '1d' $f >new/$f;done
