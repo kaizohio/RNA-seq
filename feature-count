@@ -1,3 +1,4 @@
 for f in *.txt;do sed '1d' $f >new/$f;done
 myfiles=list.files(pattern = "*.txt" )
 x <- readDGE(files, columns=c(1,7))
+View(as.data.frame(x$counts))
