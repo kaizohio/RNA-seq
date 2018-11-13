@@ -44,6 +44,7 @@ k1$TestSet.Sequences<-chartr(";",",",k1$TestSet.Sequences)
 k2<-read.csv("JaponicaVSindica2.csv",header = TRUE)
 colnames(k2)<-c('ID','baseMean','logFC','lfcSE','stat','P.Value','adj.P.Val')
 k3<-read.csv("genelist.csv",header = TRUE)
+colnames(k3)<-c('ID','logFC')
 
 BP<-subset(k1,k1$Category=="BIOLOGICAL_PROCESS")
 CC<-subset(k1,k1$Category=="CELLULAR_COMPONENT")
