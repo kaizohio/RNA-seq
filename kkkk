@@ -6,3 +6,10 @@ cut -f 1 kegg2gene.txt | sort -u | wc
 cut -f 2 kegg2gene.txt | sort -u | wc
 
 https://guangchuangyu.github.io/cn/2018/01/kegg-pathway-index/
+
+
+> bitr_kegg(geneID = new_ids$ENTREZID, 
++ fromType='ncbi-geneid', toType='Path', 
++ organism='hsa') -> xx
+> head(xx)
+> new_ids$ENTREZ[!new_ids$ENTREZID %in% 
