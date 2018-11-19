@@ -19,3 +19,6 @@ x$metric= x$logP/x$fcsign
 y<-x[,c("Gene", "metric")]
 head(y)
 write.table(y,file="DE_genes.rnk",quote=F,sep="\t",row.names=F)
+
+
+http://www.bio-info-trainee.com/2144.html
