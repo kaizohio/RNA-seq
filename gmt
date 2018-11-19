@@ -10,3 +10,12 @@ cat('\n')
 }
 sink()
 }
+
+x <- read.table("DE_genes.txt",sep = "\t",header = T)
+head(x)
+x$fcsign <- sign(x$log2.fold_change.)
+x$logP=-log10(x$p_value)
+x$metric= x$logP/x$fcsign
+y<-x[,c("Gene", "metric")]
+head(y)
+write.table(y,file="DE_genes.rnk",quote=F,sep="\t",row.names=F)
