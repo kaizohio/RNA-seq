@@ -1,5 +1,5 @@
 k1<-read.csv("Goenrichment.txt",header = TRUE,sep = "\t")
-GeneRatio<-as.numeric(k1$Nr.Test)/as.numeric(k1$Nr.Reference)
+GeneRatio<-as.numeric(k1$Nr.Test)/(as.numeric(k1$Non.Annot.Test)+as.numeric(k1$Nr.Test))
 k1<-cbind(k1,GeneRatio)
 ##########################################################################################################(P.adj)
  ggplot(k1,aes(x=GeneRatio,y=reorder(GO.Name,GeneRatio))) + 
