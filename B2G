@@ -6,7 +6,7 @@ k1<-k2
 ##########################################################################################################(P.adj)
  ggplot(k1,aes(x=GeneRatio,y=reorder(GO.Name,GeneRatio))) + 
      geom_point(aes(size=Nr.Test,color=FDR))+
-     scale_colour_gradient(low="blue",high="red")+
+     scale_colour_gradient(low="green",high="red")+
      labs(
          color=expression(P.adjust),
          size="Gene number",
@@ -23,7 +23,7 @@ k1<-k2
 #########################################################################################################-log(10)P.adj
  ggplot(k1,aes(x=GeneRatio,y=reorder(GO.Name,GeneRatio))) + 
      geom_point(aes(size=Nr.Test,color=-1*log10(FDR)))+
-     scale_colour_gradient(low="blue",high="red")+
+     scale_colour_gradient(low="green",high="red")+
      labs(
          color=expression(-log[10](P.adjust)),
          size="Gene number",
