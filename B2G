@@ -1,6 +1,8 @@
 k1<-read.csv("Goenrichment.txt",header = TRUE,sep = "\t")
 GeneRatio<-as.numeric(k1$Nr.Test)/(as.numeric(k1$Non.Annot.Test)+as.numeric(k1$Nr.Test))
 k1<-cbind(k1,GeneRatio)
+k2<-subset(k1,k1$FDR<0.05)
+k1<-k2
 ##########################################################################################################(P.adj)
  ggplot(k1,aes(x=GeneRatio,y=reorder(GO.Name,GeneRatio))) + 
      geom_point(aes(size=Nr.Test,color=FDR))+
