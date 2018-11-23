@@ -96,7 +96,7 @@ ggplot(k1,aes(x=GeneRatio,y=reorder(Description,GeneRatio))) +
 ##############################################################################################################
 colnames(k1)<-c('ID','Term','GeneRatio','BgRatio','pvalue','adj_pval','qvalue','Genes','Category')
 k1$Genes<-chartr("/",",",k1$Genes)
-
+colnames(k2)<-c('ID','baseMean','logFC','lfcSE','stat','P.Value','adj.P.Val')
 circ<-circle_dat(k1,k2)
 
 mgr00910<-subset(circ,circ$ID=='mgr00910')
