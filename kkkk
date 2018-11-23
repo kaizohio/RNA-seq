@@ -13,3 +13,5 @@ https://guangchuangyu.github.io/cn/2018/01/kegg-pathway-index/
 + organism='hsa') -> xx
 > head(xx)
 > new_ids$ENTREZ[!new_ids$ENTREZID %in% 
+
+perl -alne '{if(/^C/){/PATH:mgr(\d+)/;$kegg=$1}else{print "$kegg\t$F[1]" if /^D/ and $kegg;}}' mgr00001.keg >kegg2gene.txt
