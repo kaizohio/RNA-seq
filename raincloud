@@ -1,0 +1,40 @@
+##violin + boxplot + raw data
+ require(ggplot2)
+ggplot(circ, aes(term, logFC, fill=ID))  +
+    geom_violin(alpha=.5) +
+    geom_boxplot(width=.1) +
+    geom_jitter()
+    
+##violin + mean+-sd + raw data
+require(dplyr)
+d <- group_by(circ, ID) %>%
+    summarize(mean = mean(logFC),
+              sd = sd(logFC))
+ggplot(circ, aes(ID, logFC, fill=ID))  +
+    geom_violin(alpha=.5) +
+    geom_jitter() +
+    geom_pointrange(aes(y=mean, ymin=mean-sd, ymax=mean+sd, color=ID), data=d, size=2) 
+
+##raincloud Type1:
+## devtools::install_github("GuangchuangYu/gglayer")
+require(gglayer)
+require(dplyr)
+d <- group_by(circ, ID) %>%
+    summarize(mean = mean(logFC),
+              sd = sd(logFC))
+ ggplot(circ, aes(ID, logFC, fill=ID))  +
+    geom_flat_violin(position=position_nudge(x=.2)) +
+    geom_jitter(aes(color=ID), width=.15) +
+    geom_pointrange(aes(y=mean, ymin=mean-sd, ymax=mean+sd),
+                    data=d, size=1, position=position_nudge(x=.25)) +
+    coord_flip() + theme_bw() +
+    theme(legend.position="bottom")
+
+ ##Type3:
+
+ ggplot(circ, aes(ID, logFC, fill=ID))  +
+    geom_flat_violin(position=position_nudge(x=.2)) +
+    geom_dotplot(binaxis="y", stackdir="down", dotsize=.35) +
+    geom_boxplot(width=.1, position=position_nudge(x=.1)) +
+    coord_flip() + theme_bw() +
+    theme(legend.position="bottom")
