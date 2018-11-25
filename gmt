@@ -26,3 +26,4 @@ https://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/do
 
 
  perl -alne '{if(/^D/){/(\d+)/;$kegg=$F[1]}else{print "EC:$kegg\t$F[1]" if /^E/ and $kegg;}}' mgr01000.keg >kegg3gene.txt                              
+https://www.genome.jp/dbget/
