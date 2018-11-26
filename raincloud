@@ -1,3 +1,7 @@
+ggplot(circ, aes(x=ID,y=logFC,fill=term))+geom_boxplot(width=.1)+geom_violin(alpha=.5)+geom_jitter(aes(color=genes))+labs(title = 'Group1vsGroup2')+theme(plot.title = element_text(hjust = 0.5))
+
+
+
 ##violin + boxplot + raw data
  require(ggplot2)
 ggplot(circ, aes(term, logFC, fill=ID))  +
