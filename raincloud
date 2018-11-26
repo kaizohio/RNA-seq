@@ -3,7 +3,7 @@
 ggplot(circ, aes(term, logFC, fill=ID))  +
     geom_violin(alpha=.5) +
     geom_boxplot(width=.1) +
-    geom_jitter()
+    geom_jitter()+labs(title = 'jjj')+theme(plot.title = element_text(hjust = 0.5))
     
 ##violin + mean+-sd + raw data
 require(dplyr)
