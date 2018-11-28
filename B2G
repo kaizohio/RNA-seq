@@ -1,5 +1,6 @@
 k1<-read.csv("Goenrichment.txt",header = TRUE,sep = "\t")
 GeneRatio<-as.numeric(k1$Nr.Test)/(as.numeric(k1$Non.Annot.Test)+as.numeric(k1$Nr.Test))
+GeneRatio<-fractions(as.numeric(k1$Nr.Test)/(as.numeric(k1$Non.Annot.Test)+as.numeric(k1$Nr.Test)))
 k1<-cbind(k1,GeneRatio)
 k2<-subset(k1,k1$FDR<0.05)
 k1<-k2
