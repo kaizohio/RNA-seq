@@ -79,3 +79,28 @@ df <- as.data.frame(colData(dds)[,c("condition")])
 
 
 p <-pheatmap(assay(rld)[select,], cluster_rows=FALSE, show_rownames=TRUE,cluster_cols=FALSE, annotation_col=df)
+
+#画 convex hull（凸包）替代 ellipse
+
+library(dplyr)
+library(ggplot2)
+
+data <- plotPCA(rld, intgroup = c("condition"), returnData = TRUE)
+percentVar <- round(100 * attr(data, "percentVar"))
+
+# 构造凸包
+hull_data <- data %>%
+  group_by(condition) %>%
+  slice(chull(PC1, PC2))
+
+# 画图
+ggplot(data, aes(PC1, PC2, color = condition)) +
+  geom_point(size = 5) +
+  geom_polygon(data = hull_data, aes(fill = condition), alpha = 0.2, color = NA) +
+  theme_bw() +
+  xlab(paste0("PC1: ", percentVar[1], "% variance")) +
+  ylab(paste0("PC2: ", percentVar[2], "% variance")) +
+  theme(
+    legend.title = element_blank(),
+    text = element_text(size = 14)
+  )
